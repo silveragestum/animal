@@ -47,11 +47,10 @@ def _message_text(message) -> str:
 
 
 def chat(message, history) -> str:
+    _ = history
     text = _message_text(message)
     if not text:
         return "Please enter a message."
-    if not history:
-        chat_history.clear()
     return get_chain().invoke(
         {"input": text},
         config={"configurable": {"session_id": "gradio-chat"}},
